@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
+  Alert,
   Paper,
   TableContainer,
   Table,
@@ -9,7 +10,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  TableSortLabel
+  TableSortLabel,
 } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -19,6 +20,8 @@ import { selectIsLoading, selectMoviesList, selectError } from '../../redux/movi
 import { sortArrayByDirectionAndProperty } from '../../shared/helpers/sortArrayByDirectionAndProperty';
 import { Movie, Order } from '../../shared/types';
 import { SortProperty } from './types';
+
+import { Spinner } from '../../components/Spinner';
 
 export const MoviesPage = () => {
 
@@ -39,6 +42,18 @@ export const MoviesPage = () => {
   useEffect(() => {
     setRowData(moviesList);
   }, [moviesList])
+
+  if (loading) {
+    return <Spinner />
+  }
+
+  if (error) {
+    return (
+      <Alert severity="error" color="error">
+				{error}
+			</Alert>
+    );
+  }
    
   const handleSortRequest = (
     property: keyof Movie,
@@ -71,7 +86,7 @@ export const MoviesPage = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <Link to={`/${movie.movieId}`}>
+                <Link to={`/${movie.movieId}`} style={{ textDecoration: 'none' }}>
                   {movie.title}
                 </Link>
               </TableCell>

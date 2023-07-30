@@ -6,4 +6,13 @@ export const PaperWrapper = styled(Paper)`
 
 export const Header = styled(Box)`
   text-align: center;
+  padding-bottom: 10px;
+`;
+
+export const SpinnerContainer = styled(Box)`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 `;
