@@ -11,7 +11,9 @@ export const ListSection: FC<ListSectionProps> = ({ label, list }) => {
       <ListWrapper>
         {list?.map((item) => {
           return (
-            <ListItemStyled sx={{ display: 'list-item', listStyleType: 'disc',  pl: 0 }} key={item}>{item}</ListItemStyled>
+            <ListItemStyled sx={{ display: 'list-item', listStyleType: 'disc',  pl: 0 }} key={item}>
+              <Typography>{item}</Typography>
+            </ListItemStyled>
           );
         })}
       </ListWrapper>

@@ -16,3 +16,7 @@ export const SpinnerContainer = styled(Box)`
 	align-items: center;
 	height: 100vh;
 `;
+
+export const DescriptionWrapper = styled(Box)`
+  padding-bottom: 10px;
+`;
