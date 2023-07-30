@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Paper,
@@ -66,13 +67,15 @@ export const MoviesPage = () => {
         <TableBody>
           {rowData.map((movie: Movie) => (
             <TableRow
-              key={movie.id}
+              key={movie.movieId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {movie.title}
-              </TableCell>
-              <TableCell align="right">{movie.id}</TableCell>
+              <Link to={`/${movie.movieId}`}>
+                <TableCell component="th" scope="row">
+                  {movie.title}
+                </TableCell>
+              </Link>
+              <TableCell align="right">{movie.episodeId}</TableCell>
               <TableCell>{movie.description}</TableCell>
               <TableCell>{movie.director}</TableCell>
               <TableCell>{new Date(movie.releaseDate).toDateString()}</TableCell>

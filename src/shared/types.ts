@@ -1,5 +1,6 @@
 export interface Movie {
-  id: number;
+  movieId: number;
+  episodeId: number;
   title: string;
   url: string;
   director: string;
