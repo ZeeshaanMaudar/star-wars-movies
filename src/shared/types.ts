@@ -6,3 +6,8 @@ export interface Movie {
   description: string;
   releaseDate: string;
 }
+
+export enum Order {
+	ASC = 'asc',
+	DESC = 'desc',
+}

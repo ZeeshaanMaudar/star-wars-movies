@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as actionTypes from './moviesActionTypes';
 
 import { BASE_URL } from './constants';
-import { Movie } from './types';
+import { Movie } from '../../shared/types';
 
 export interface MoviesType {
   moviesList: Movie[]
