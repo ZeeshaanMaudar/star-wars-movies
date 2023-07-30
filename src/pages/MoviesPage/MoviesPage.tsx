@@ -14,7 +14,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchMoviesListStartAsync } from '../../redux/movies/moviesActions';
-import { selectIsFetchingMovies, selectMoviesList, selectError } from '../../redux/movies/moviesSelectors';
+import { selectIsLoading, selectMoviesList, selectError } from '../../redux/movies/moviesSelectors';
 
 import { sortArrayByDirectionAndProperty } from '../../shared/helpers/sortArrayByDirectionAndProperty';
 import { Movie, Order } from '../../shared/types';
@@ -22,7 +22,7 @@ import { SortProperty } from './types';
 
 export const MoviesPage = () => {
 
-  const loading = useAppSelector(selectIsFetchingMovies);
+  const loading = useAppSelector(selectIsLoading);
   const moviesList = useAppSelector(selectMoviesList);
   const error = useAppSelector(selectError);
 
@@ -70,11 +70,11 @@ export const MoviesPage = () => {
               key={movie.movieId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <Link to={`/${movie.movieId}`}>
-                <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row">
+                <Link to={`/${movie.movieId}`}>
                   {movie.title}
-                </TableCell>
-              </Link>
+                </Link>
+              </TableCell>
               <TableCell align="right">{movie.episodeId}</TableCell>
               <TableCell>{movie.description}</TableCell>
               <TableCell>{movie.director}</TableCell>

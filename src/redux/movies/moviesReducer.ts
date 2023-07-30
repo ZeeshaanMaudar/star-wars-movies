@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   moviesList: [],
   error: '',
+  movieDetails: null,
 };
 
 const moviesReducer = (state = initialState, action: any) => {
@@ -20,6 +21,24 @@ const moviesReducer = (state = initialState, action: any) => {
         loading: false
       }
     case actionTypes.FETCH_MOVIES_LIST_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      }
+
+    case actionTypes.FETCH_SINGLE_MOVIE_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.FETCH_SINGLE_MOVIE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        movieDetails: action.payload.movieDetails,
+        loading: false
+      }
+    case actionTypes.FETCH_SINGLE_MOVIE_DETAILS_FAILURE:
       return {
         ...state,
         error: action.payload,
