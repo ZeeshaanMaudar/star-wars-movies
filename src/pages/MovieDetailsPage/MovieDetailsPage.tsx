@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import {
-  Paper
+  Typography
 } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -10,6 +10,8 @@ import { fetchSingleMovieDetailsStartAsync } from '../../redux/movies/moviesActi
 import { selectIsLoading, selectMovieDetails, selectError } from '../../redux/movies/moviesSelectors';
 
 import { ListSection } from '../../components/ListSection';
+
+import { PaperWrapper, Header } from './styles';
 
 export const MovieDetailsPage = () => {
   const params = useParams();
@@ -24,23 +26,21 @@ export const MovieDetailsPage = () => {
     dispatch(fetchSingleMovieDetailsStartAsync(Number(params.movieId)));
   }, [dispatch])
 
-  console.log('params 333: ', params);
-  console.log('movieDetails 333: ', movieDetails);
   return (
-    <Paper>
+    <PaperWrapper>
       <Link to="/">Back</Link>
+      <Header>
+        <Typography variant='h4'>{movieDetails?.title}</Typography>
+        <Typography>Director: {movieDetails?.director}</Typography>
+        <Typography>Producer: {movieDetails?.producer}</Typography>
+      </Header>
       <div>
-        <div>{movieDetails?.title}</div>
-        <div>Director: {movieDetails?.director}</div>
-        <div>Producer: {movieDetails?.producer}</div>
-      </div>
-      <div>
-        <h4>Description</h4>
+        <Typography variant='h6'>Description</Typography>
         <p>{movieDetails?.description}</p>
       </div>
       <ListSection label="Characters" list={movieDetails?.characters} />
       <ListSection label="Planets" list={movieDetails?.planets} />
       <ListSection label="Species" list={movieDetails?.species} />
-    </Paper>
+    </PaperWrapper>
   );
 };

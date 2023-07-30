@@ -1,13 +1,18 @@
-import { styled, List, ListItem } from '@mui/material';
+import { styled, List, ListItem, Box } from '@mui/material';
+
+export const Wrapper = styled(Box)`
+  border-top: 2px solid #eee;
+  padding-top: 10px;
+`;
 
 export const ListWrapper = styled(List)`
   display: flex;
   flex-wrap: wrap;
+  padding: 20px;
 `;
 
 export const ListItemStyled = styled(ListItem)`
   width: 100%;
-  position: relative;
   flex: 0 0 100%;
   max-width: 100%;
 

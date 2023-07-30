@@ -1,19 +1,20 @@
 import React, { FC } from 'react';
+import { Typography } from '@mui/material';
 
 import { ListSectionProps } from './types';
-import { ListWrapper, ListItemStyled } from './styles';
+import { Wrapper, ListWrapper, ListItemStyled } from './styles';
 
 export const ListSection: FC<ListSectionProps> = ({ label, list }) => {
   return (
-    <div>
-      <h4>Characters</h4>
+    <Wrapper>
+      <Typography variant='h6'>{label}</Typography>
       <ListWrapper>
         {list?.map((item) => {
           return (
-            <ListItemStyled sx={{ display: 'list-item', listStyleType: 'disc',  pl: 1 }} key={item}>{item}</ListItemStyled>
+            <ListItemStyled sx={{ display: 'list-item', listStyleType: 'disc',  pl: 0 }} key={item}>{item}</ListItemStyled>
           );
         })}
       </ListWrapper>
-    </div>
+    </Wrapper>
   );
 };
