@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   Alert,
@@ -22,6 +21,7 @@ import { Movie, Order } from '../../shared/types';
 import { SortProperty } from './types';
 
 import { Spinner } from '../../components/Spinner';
+import { CollapsibleRow } from '../../components/CollapsibleRow';
 
 export const MoviesPage = () => {
 
@@ -68,33 +68,20 @@ export const MoviesPage = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell />
             <TableCell onClick={() => handleSortRequest(SortProperty.TITLE)}>  
               <TableSortLabel active={orderBy === SortProperty.TITLE} direction={orderDirection}>Title</TableSortLabel>
             </TableCell>
-            <TableCell align="right" onClick={() => handleSortRequest(SortProperty.EPISODE_ID)}>
+            <TableCell align="center" onClick={() => handleSortRequest(SortProperty.EPISODE_ID)}>
               <TableSortLabel active={orderBy === SortProperty.EPISODE_ID} direction={orderDirection}>Episode Number</TableSortLabel>
             </TableCell>
-            <TableCell>Description</TableCell>
             <TableCell>Director</TableCell>
             <TableCell>Release Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rowData.map((movie: Movie) => (
-            <TableRow
-              key={movie.movieId}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Link to={`/${movie.movieId}`} style={{ textDecoration: 'none' }}>
-                  {movie.title}
-                </Link>
-              </TableCell>
-              <TableCell align="right">{movie.episodeId}</TableCell>
-              <TableCell>{movie.description}</TableCell>
-              <TableCell>{movie.director}</TableCell>
-              <TableCell>{new Date(movie.releaseDate).toDateString()}</TableCell>
-            </TableRow>
+            <CollapsibleRow key={movie.movieId} movie={movie} />
           ))}
         </TableBody>
       </Table>
